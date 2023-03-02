@@ -7,7 +7,6 @@ function ADD_Email_to_mailbox() {
         fristname: document.getElementById("firstname").value,
         sujet: document.getElementById("sujet").value,
         adress: document.getElementById("email").value,
-        //sujet: HTMLElement.inputMode,("sujet").value,
         text: document.getElementById("message").value
     };
     console.log(New_Email)
@@ -17,8 +16,7 @@ function ADD_Email_to_mailbox() {
     localStorage.setItem("mail_box", JSON.stringify(mail_box));
     console.log(localStorage);
     print_email()
-    let Test = localStorage.getItem("mail_box");
-    let reading = JSON.parse(Test);
+
 }
 
 function select_Email () {
@@ -47,8 +45,18 @@ function print_email() {
     let list = JSON.parse(localStorage.getItem("mail_box"));
     let text = '<caption>boite de message</caption>\n<tr> <th>nom</th><th>sujet</th> <th> email</th> <th>option</th> </tr>\n';
     for (let i = 0; i < list.length; i++) {
-        text += "<tr><td>" + list[i].fristname + "</td>" + "<td>" + list[i].sujet + "</td>" + "<td>" + list[i].adress + "</td>"  + "<td>" +"<button>Delete</button>"/* function pour suprimer*/ + "</td></tr>\n";
+        text += "<tr><td>" + list[i].fristname + "</td><td>" + list[i].sujet + "</td><td>" + list[i].adress + "</td><td>" + "<button  onclick='suprimer("+i+")' >Delete</button>" + "<button>lire</button>"/* function pour suprimer*/ + "</td></tr>\n";
     }
     document.getElementById("contenu").innerHTML = text;
     console.log(text);
+}
+function suprimer(e) {
+    let list = JSON.parse(localStorage.getItem("mail_box"));
+    list.splice(e, 1);
+    let text = '<caption>boite de message</caption>\n<tr> <th>nom</th><th>sujet</th> <th> email</th> <th>option</th> </tr>\n';
+    for (let i = 0; i < list.length; i++) {
+        text += "<tr><td>" + list[i].fristname + "</td><td>" + list[i].sujet + "</td>" + "<td>" + list[i].adress + "</td><td>" + "<button onclick='suprimer(" + i + ")' >Delete</button>" + "<button>lire</button>"/* function pour suprimer*/ + "</td></tr>\n";
+    }
+localStorage.setItem("mail_box", JSON.stringify(list));
+    document.getElementById("contenu").innerHTML = text;
 }
