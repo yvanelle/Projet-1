@@ -29,13 +29,6 @@ for (let i = 0; i < mail_box.length; i++) {
 text += "</ul>";
 }// va etre relier avec l'endroit'
 
-function send() {
-    if (conteur >= 0) ADD_Email_to_mailbox() ;
-    conteur = -1;
-}
-function read () {
-     document.getElementById("nom du bouton ici_read").textContent = window.localStorage.getItem(mail_box[NewEmail])
-}
 //ceci devrait permettre devoyer les nouvelle element et de les imprimer sur une liste
 function print_text() {
     let node = document.createElement("ul");
