@@ -40,10 +40,10 @@ function print_text() {
     document.getElementById("contact").appendChild(node);
     console.log(textnode);
 }
-// function de pour faire aparaitre lescontact,message et about
+
 function print_email() {
     let list = JSON.parse(localStorage.getItem("mail_box"));
-    let text = '<caption>boite de message</caption>\n<tr> <th>nom</th><th>sujet</th> <th> email</th> <th>option</th> </tr>\n';
+    let text = '<caption>boite de message</caption>\n<tr> <th>nom</th><th>sujet</th><th> email</th> <th>option</th> </tr>\n';
     for (let i = 0; i < list.length; i++) {
         text += "<tr><td>" + list[i].fristname + "</td><td>" + list[i].sujet + "</td><td>" + list[i].adress + "</td><td>" + "<button  onclick='suprimer("+i+")' >Delete</button>" + "<button>lire</button>"/* function pour suprimer*/ + "</td></tr>\n";
     }
